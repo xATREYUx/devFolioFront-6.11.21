@@ -18,7 +18,10 @@ const Register = () => {
         password,
         passwordVerify,
       };
-      SignUp(registerData);
+      SignUp(registerData).then((userObject) =>
+        console.log("userObject", userObject)
+      );
+
       //   await axios.post(`${domain}/auth/`, registerData);
       //   await getLoggedIn();
       //   history.push("/");
