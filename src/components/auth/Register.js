@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
 import AuthContext from "../../context/AuthContext";
 import domain from "../../util/domain";
-import { SignUp } from "./authFunctions";
+import { createUser } from "./authFunctions";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ const Register = () => {
         password,
         passwordVerify,
       };
-      SignUp(registerData).then((userObject) =>
+      await createUser(registerData).then((userObject) =>
         console.log("userObject", userObject)
       );
 
