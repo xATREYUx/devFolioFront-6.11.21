@@ -4,12 +4,13 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Register from "./components/auth/Register";
 // import Customers from "./components/customers/Customers";
 // import NavBar from "./components/layout/NavBar";
-// import AuthContext from "./context/AuthContext";
+import AuthContext from "./context/AuthContext";
 
 const Router = () => {
-  // const { loggedIn } = useContext(AuthContext);
-  // const { loggedIn } = useContext();
-
+  const { loggedIn } = useContext(AuthContext);
+  {
+    loggedIn && console.log("loggedIn", loggedIn.uid);
+  }
   return (
     <BrowserRouter>
       {/* <NavBar /> */}
@@ -17,8 +18,7 @@ const Router = () => {
         <Route exact path="/">
           <div>Home</div>
         </Route>
-        {/* {loggedIn === false && ( */}
-        {true && (
+        {loggedIn === null && (
           <>
             <Route path="/register">
               <Register />
@@ -28,13 +28,13 @@ const Router = () => {
             </Route> */}
           </>
         )}
-        {/* {loggedIn === true && (
+        {loggedIn !== null && (
           <>
-            <Route path="/customer">
-              <Customers />
+            <Route path="/user">
+              <div>User Page</div>
             </Route>
           </>
-        )} */}
+        )}
       </Switch>
     </BrowserRouter>
   );

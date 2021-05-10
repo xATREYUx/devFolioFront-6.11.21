@@ -3,13 +3,15 @@ import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
 import AuthContext from "../../context/AuthContext";
 import domain from "../../util/domain";
-import { createUser } from "./authFunctions";
+import { createUser } from "./authActions";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVerify, setPasswordVerify] = useState("");
+  const { getLoggedIn, loggedIn } = useContext(AuthContext);
 
+  const history = useHistory();
   const register = async (e) => {
     e.preventDefault();
     try {
@@ -18,13 +20,16 @@ const Register = () => {
         password,
         passwordVerify,
       };
-      await createUser(registerData).then((userObject) =>
-        console.log("userObject", userObject)
-      );
-
-      //   await axios.post(`${domain}/auth/`, registerData);
-      //   await getLoggedIn();
-      //   history.push("/");
+      await createUser(registerData).then((userObject) => {
+        console.log("createUser userObject", userObject.user.user.uid);
+        getLoggedIn()
+          .then(() => {
+            history.push(`/user`);
+          })
+          .catch((error) => {
+            console.log("createUser error", error);
+          });
+      });
     } catch (err) {
       console.error(err);
     }

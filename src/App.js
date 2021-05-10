@@ -4,13 +4,15 @@ import firebaseConfig from "./fb_config/fb_config";
 import firebase from "firebase";
 import "firebase/auth";
 
+import { AuthContextProvider } from "./context/AuthContext";
+
 firebase.initializeApp(firebaseConfig);
 
 const App = () => {
   return (
-    <div>
+    <AuthContextProvider>
       <Router />
-    </div>
+    </AuthContextProvider>
   );
 };
 
