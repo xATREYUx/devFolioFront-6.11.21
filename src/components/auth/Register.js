@@ -6,33 +6,29 @@ import domain from "../../util/domain";
 import { createUser } from "./authActions";
 
 const Register = () => {
+  const { getLoggedIn, loggedIn } = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVerify, setPasswordVerify] = useState("");
-  const { getLoggedIn, loggedIn } = useContext(AuthContext);
 
   const history = useHistory();
+
   const register = async (e) => {
     e.preventDefault();
+    console.log(getLoggedIn);
     try {
       const registerData = {
         email,
         password,
         passwordVerify,
       };
-      await createUser(registerData).then((userObject) => {
-        console.log("createUser userObject", userObject.user.user.uid);
-        getLoggedIn()
-          .then(() => {
-            history.push(`/user`);
-          })
-          .catch((error) => {
-            console.log("createUser error", error);
-          });
-      });
+      await createUser(registerData);
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
+    await getLoggedIn();
+    history.push("/user");
   };
 
   return (

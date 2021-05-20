@@ -5,6 +5,9 @@ import firebase from "firebase";
 import "firebase/auth";
 
 import { AuthContextProvider } from "./context/AuthContext";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
 
 firebase.initializeApp(firebaseConfig);
 

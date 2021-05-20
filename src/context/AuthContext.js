@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import React, { useState, createContext, useEffect } from "react";
 import domain from "../util/domain";
 import firebase from "firebase";
@@ -6,32 +6,27 @@ import firebase from "firebase";
 const AuthContext = createContext();
 
 const AuthContextProvider = (props) => {
+  console.log("AuthContextProvider Initiated");
+
   const [loggedIn, setLoggedIn] = useState(null);
-  const [tokenId, setTokenId] = useState(undefined);
 
   const getLoggedIn = async () => {
-    var user = await firebase.auth().currentUser;
-    if (user === null) {
-      return;
-    }
-
-    console.log("AuthContextProvider currentUser", user);
-
-    const token = user.getIdToken(true);
-    setLoggedIn(user);
-    setTokenId(token);
+    console.log("getLoggedIn Initiated");
+    let validatedUser = await axios.get(`${domain}/auth/loggedIn`);
+    console.log("AuthContextProvider validatedUser", validatedUser);
+    setLoggedIn(validatedUser.data);
   };
 
   useEffect(() => {
+    console.log("Initial Context");
     getLoggedIn();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ loggedIn, getLoggedIn, tokenId }}>
+    <AuthContext.Provider value={{ loggedIn, getLoggedIn }}>
       {props.children}
     </AuthContext.Provider>
   );
-  // true;
 };
 export default AuthContext;
 
