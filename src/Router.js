@@ -6,6 +6,7 @@ import Register from "./components/auth/Register";
 // import Customers from "./components/customers/Customers";
 // import NavBar from "./components/layout/NavBar";
 import AuthContext from "./context/AuthContext";
+import HomePage from "./pages/Home";
 
 const Router = () => {
   const { loggedIn, getLoggedIn } = useContext(AuthContext);
@@ -17,7 +18,7 @@ const Router = () => {
       {/* <NavBar /> */}
       <Switch>
         <Route exact path="/">
-          <div>Home</div>
+          <HomePage />
         </Route>
         {loggedIn === null && (
           <>
