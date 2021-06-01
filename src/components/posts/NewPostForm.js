@@ -19,7 +19,7 @@ const NewPostForm = () => {
         content,
         // cardImage,
       };
-      const newPostRes = await createPost(postData);
+      createPost(postData);
     } catch (err) {
       console.log("createPost Error", err);
     }

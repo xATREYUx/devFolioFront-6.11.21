@@ -40,6 +40,14 @@ const PostContextProvider = (props) => {
     }
   };
 
+  const deletePost = async () => {
+    try {
+      // signed out
+    } catch (e) {
+      // an error
+    }
+  };
+
   useEffect(() => {
     getPosts();
   }, []);

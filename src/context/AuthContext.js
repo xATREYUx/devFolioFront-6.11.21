@@ -9,12 +9,25 @@ const AuthContextProvider = (props) => {
   console.log("AuthContextProvider Initiated");
 
   const [loggedIn, setLoggedIn] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getLoggedIn = async () => {
     console.log("getLoggedIn Initiated");
     let validatedUser = await axios.get(`${domain}/auth/loggedIn`);
-    console.log("AuthContextProvider validatedUser", validatedUser);
+    console.log("AuthContextProvider validatedUser", validatedUser.data);
     setLoggedIn(validatedUser.data);
+  };
+
+  const logout = async () => {
+    console.log("Logout Initiated");
+    try {
+      await firebase.auth().signOut();
+      await axios.get(`${domain}/auth/logout`);
+      setLoggedIn(null);
+      // signed out
+    } catch (e) {
+      console.log("Logout erro", e);
+    }
   };
 
   useEffect(() => {
@@ -23,7 +36,7 @@ const AuthContextProvider = (props) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ loggedIn, getLoggedIn }}>
+    <AuthContext.Provider value={{ isLoading, loggedIn, getLoggedIn, logout }}>
       {props.children}
     </AuthContext.Provider>
   );

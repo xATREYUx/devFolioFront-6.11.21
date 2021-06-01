@@ -1,4 +1,4 @@
-import Router from "./Router";
+import Router from "./routing/Router";
 
 import firebaseConfig from "./fb_config/fb_config";
 import firebase from "firebase";
