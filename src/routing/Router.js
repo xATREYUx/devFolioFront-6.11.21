@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 // import Login from "./components/auth/Login";
-import UserPage from "../pages/UserPage";
+import UserPage from "../components/layout/pages/UserPage";
 import Register from "../components/auth/Register";
 // import Customers from "./components/customers/Customers";
 import NavBar from "../components/layout/navBar/NavBar";
 import AuthContext from "../context/AuthContext";
-import HomePage from "../pages/Home";
+import HomePage from "../components/layout/pages/HomePage";
 import { PrivateRoute, AuthRoute } from "../routing/PrivateRoute";
 
 const Router = () => {

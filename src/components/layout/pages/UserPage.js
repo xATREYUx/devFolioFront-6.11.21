@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import NewPostForm from "../components/posts/NewPostForm";
-import PostList from "../components/posts/PostList";
-import PostContext from "../context/PostContext";
+import NewPostForm from "../../posts/NewPostForm";
+import PostList from "../../posts/PostList";
+import PostContext from "../../../context/PostContext";
 
 const UserPage = () => {
   const { getUsersPosts, usersPosts } = useContext(PostContext);

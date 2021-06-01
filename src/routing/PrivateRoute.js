@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Redirect, Route, useHistory } from "react-router-dom";
 import Register from "../components/auth/Register";
 import AuthContext from "../context/AuthContext";
-import UserPage from "../pages/UserPage";
+import UserPage from "../components/layout/pages/UserPage";
 
 export const PrivateRoute = ({ component }) => {
   const { loggedIn } = useContext(AuthContext);
