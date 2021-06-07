@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import Header from "../header-footer/Header";
 
 import { ReactComponent as BlobTop } from "../../../shared/images/blobTop.svg";
@@ -24,10 +24,26 @@ import {
   AboutMeContainer,
 } from "./home-page.styles";
 import PostList from "../../posts/PostList";
+import PostContext from "../../../context/PostContext";
 
 const HomePage = () => {
   const [loadedPosts, setLoadedPosts] = useState([]);
+  const { posts } = useContext(PostContext);
   const bubblesRef = useRef();
+
+  useEffect(() => {
+    const parallax = () => {
+      if (bubblesRef.current) {
+        let scrolledValue = window.scrollY / 3.5;
+        bubblesRef.current.style.transform = `translateY(
+      -${scrolledValue + "px"} 
+      )`;
+        console.log("scrolling...", scrolledValue);
+      }
+    };
+    window.addEventListener("scroll", parallax);
+    return () => window.removeEventListener("scroll", parallax);
+  }, [bubblesRef]);
 
   return (
     <HomePageContainer>
@@ -38,7 +54,7 @@ const HomePage = () => {
         <Column id="section-column-left">
           <Title>React Engineering</Title>
           <AboutThisSite />
-          <PostList posts={loadedPosts} />
+          <PostList posts={posts} dataLimit={3} pageLimit={4} title="" />
         </Column>
         <Column id="section-column-right">
           {/* <ProfileSection /> */}

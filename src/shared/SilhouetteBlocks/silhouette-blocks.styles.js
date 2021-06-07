@@ -7,13 +7,13 @@ export const AnimationLookDownContainer = styled.div`
   height: 50px;
   width: 70%;
   margin-top: 30px;
-  bottom: -3px;
+  bottom: -2px;
   /* height: 12.4vh; */
   /* top: 5.3vh; */
   /* left: 45px; */
   img {
     position: absolute;
-    left: 70px;
+    right: 63%;
     height: 50px;
     /* bottom: 0; */
   }

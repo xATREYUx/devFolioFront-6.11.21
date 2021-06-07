@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, createContext, useEffect } from "react";
-import domain from "../util/domain";
+import domain from "../../src/util/domain";
 import firebase from "firebase";
 
 const AuthContext = createContext();

@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  /* display: flex;
+export const AppContainer = styled.div`
+  display: flex;
   flex-direction: column;
-  width: 100vw; */
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
   /* display: flex;
   flex-direction: column;
   position: relative;

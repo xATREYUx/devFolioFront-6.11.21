@@ -8,7 +8,8 @@ import NavBar from "../components/layout/navBar/NavBar";
 import AuthContext from "../context/AuthContext";
 import HomePage from "../components/layout/pages/HomePage";
 import { PrivateRoute, AuthRoute } from "../routing/PrivateRoute";
-
+import PostPage from "../components/layout/pages/PostPage";
+import { AppContainer } from "../shared/shared.styles";
 const Router = () => {
   const { loggedIn, getLoggedIn } = useContext(AuthContext);
   {
@@ -17,13 +18,16 @@ const Router = () => {
 
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <AuthRoute path="/register" component={Register} auth={loggedIn} />
-        <PrivateRoute path="/user" component={UserPage} />
-        <Route exact path="/" component={HomePage} />
-        <Route path="*" component={HomePage} />
-      </Switch>
+      <AppContainer>
+        <NavBar />
+        <Switch>
+          <AuthRoute path="/register" component={Register} auth={loggedIn} />
+          <PrivateRoute path="/user" component={UserPage} />
+          <Route path="/post/:id" component={PostPage} />
+          <Route exact path="/" component={HomePage} />
+          <Route path="*" component={HomePage} />
+        </Switch>
+      </AppContainer>
     </BrowserRouter>
   );
 };

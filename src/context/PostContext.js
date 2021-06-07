@@ -1,22 +1,31 @@
 import axios from "axios";
 import React, { useState, createContext, useEffect } from "react";
-import domain from "../util/domain";
+import domain from "../../src/util/domain";
 import firebase from "firebase";
 
 const PostContext = createContext();
 
 const PostContextProvider = (props) => {
-  console.log("PostContext Initiated");
+  console.log("PostContext Initiated", props);
 
   const [posts, setPosts] = useState([]);
   const [usersPosts, setUsersPosts] = useState([]);
 
-  const createPost = async (postData) => {
-    console.log("createPost Action Initiated", postData);
-    const newPostRes = await axios.post(`${domain}/posts`, postData);
-    console.log("newPostRes log", newPostRes.data);
-    const data = newPostRes.data;
-    setUsersPosts((prevState) => [...prevState, data]);
+  const createPost = async (formData) => {
+    for (var value of formData.values()) {
+      console.log("createPost data", value);
+    }
+    try {
+      console.log("createPost Action Initiated", formData);
+      //  formData.imageOne = urllocation
+      const newPostRes = await axios.post(`${domain}/posts`, formData);
+      console.log("newPostRes log", newPostRes.data);
+      const data = newPostRes.data;
+      setUsersPosts((prevState) => [...prevState, data]);
+      console.log("---Post Created---");
+    } catch (err) {
+      console.log("createPost error", err);
+    }
   };
 
   const getPosts = async () => {
@@ -24,11 +33,12 @@ const PostContextProvider = (props) => {
       console.log("getPosts Initiated");
       let getPostsRes = await axios.get(`${domain}/posts`);
       console.log("getPosts response", getPostsRes.data);
-      setPosts(getPostsRes);
+      setPosts(getPostsRes.data);
     } catch (err) {
       console.log(err);
     }
   };
+
   const getUsersPosts = async () => {
     try {
       console.log("----getUsersPosts Initiated----");

@@ -6,22 +6,22 @@ export const HomePageContainer = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  min-height: 2300px;
+  min-height: 2000px;
   /* width: 100vw; */
   .backBlobBottom {
     z-index: -1;
     position: absolute;
     width: 100%;
-    height: 30vh;
+    height: 15vh;
     bottom: -20px;
     transform: scaleY(-1);
   }
   .bubbleBlobs {
     z-index: -2;
     position: absolute;
-    width: 30%;
-    height: 45vh;
-    bottom: 95px;
+    width: 40%;
+    height: 60vh;
+    bottom: -70px;
   }
 `;
 
