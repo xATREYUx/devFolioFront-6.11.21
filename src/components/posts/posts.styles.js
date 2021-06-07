@@ -65,6 +65,13 @@ export const Pagination = styled.div`
     pointer-events: none;
   }
 
+  .paginationItem.deactivate {
+    pointer-events: none;
+    box-shadow: none;
+    color: #999;
+    border: #999;
+  }
+
   .prev.disabled,
   .next.disabled {
     pointer-events: none;

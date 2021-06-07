@@ -11,16 +11,17 @@ const PostList = ({ posts, dataLimit, pageLimit, title }) => {
   useEffect(() => {
     console.log("PostList posts: ", posts);
     console.log("PostList pages: ", pages);
-    setPages(Math.round(posts.length / dataLimit));
-  }, [posts, currentPage, pages]);
+    setPages(Math.ceil(posts.length / dataLimit));
+  }, [posts, currentPage]);
 
   const goToNextPage = () => {
-    setCurrentPage((page) => page + 1);
+    setCurrentPage(() => currentPage + 1);
   };
   const goToPreviousPage = () => {
-    setCurrentPage((page) => page - 1);
+    setCurrentPage(() => currentPage - 1);
   };
   const changePage = (event) => {
+    console.log("number: ", event.target.textContent);
     const pageNumber = Number(event.target.textContent);
     setCurrentPage(pageNumber);
   };
@@ -66,17 +67,22 @@ const PostList = ({ posts, dataLimit, pageLimit, title }) => {
           </button>
 
           {/* show page numbers */}
-          {getPaginationGroup().map((item, index) => (
-            <button
-              key={index}
-              onClick={changePage}
-              className={`paginationItem ${
-                currentPage === item ? "active" : null
-              }`}
-            >
-              <span>{item}</span>
-            </button>
-          ))}
+          {getPaginationGroup().map(
+            (item, index) => (
+              console.log("item and currentpage", item, currentPage),
+              (
+                <button
+                  key={index}
+                  onClick={changePage}
+                  className={`paginationItem ${
+                    currentPage === item ? "active" : null
+                  } ${item > pages ? "deactivate" : null}`}
+                >
+                  <span>{item}</span>
+                </button>
+              )
+            )
+          )}
 
           {/* next button */}
           <button
