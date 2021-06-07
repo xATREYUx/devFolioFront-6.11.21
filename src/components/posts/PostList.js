@@ -4,13 +4,15 @@ import { Pagination } from "./posts.styles";
 
 const PostList = ({ posts, dataLimit, pageLimit, title }) => {
   console.log("post length", posts.length);
-  const [pages] = useState(Math.round(posts.length / dataLimit));
+  const [pages, setPages] = useState();
   console.log("pages: ", pages);
   const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
     console.log("PostList posts: ", posts);
     console.log("PostList pages: ", pages);
-  }, [posts, currentPage]);
+    setPages(Math.round(posts.length / dataLimit));
+  }, [posts, currentPage, pages]);
 
   const goToNextPage = () => {
     setCurrentPage((page) => page + 1);
@@ -25,7 +27,6 @@ const PostList = ({ posts, dataLimit, pageLimit, title }) => {
   const getPaginatedData = () => {
     console.log("getPaginatedData currentPage", currentPage);
     console.log("getPaginatedData pages", pages);
-
     const startIndex = currentPage * dataLimit - dataLimit;
     const endIndex = startIndex + dataLimit;
     return posts.slice(startIndex, endIndex);
