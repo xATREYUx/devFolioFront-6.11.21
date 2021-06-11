@@ -15,6 +15,7 @@ const PostContextProvider = (props) => {
     for (var value of formData.values()) {
       console.log("createPost data", value);
     }
+
     try {
       console.log("createPost Action Initiated", formData);
       //  formData.imageOne = urllocation
