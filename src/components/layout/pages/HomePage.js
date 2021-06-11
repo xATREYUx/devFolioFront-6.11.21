@@ -25,6 +25,7 @@ import {
 } from "./home-page.styles";
 import PostList from "../../posts/PostList";
 import PostContext from "../../../context/PostContext";
+import ContactUs from "../../contacts/NewContactForm";
 
 const HomePage = () => {
   const [loadedPosts, setLoadedPosts] = useState([]);
@@ -77,6 +78,7 @@ const HomePage = () => {
               levels to this game.
             </Paragraph>
           </AboutMeContainer>
+          <ContactUs />
         </Column>
       </SectionContainer>
       {/* <HomeMidSectionOne posts={loadedPosts} /> */}
