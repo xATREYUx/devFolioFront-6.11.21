@@ -30,6 +30,9 @@ export const SectionContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   top: -85px;
+  #section-column-right {
+    padding: 0px 1rem 0px 1rem;
+  }
   .backBlobTop {
     z-index: -1;
     position: absolute;

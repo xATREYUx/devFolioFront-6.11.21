@@ -29,7 +29,7 @@ export const Column = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
-  padding: 0px 1rem 0px 1rem;
+  /* padding: 0px 1rem 0px 1rem; */
   /* min-width: 320px; */
 `;
 

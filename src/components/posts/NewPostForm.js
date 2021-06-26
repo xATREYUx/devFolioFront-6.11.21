@@ -5,8 +5,8 @@ import PostContext from "../../context/PostContext";
 import AuthContext from "../../context/AuthContext";
 
 import ImageUpload from "../form-elements/ImageUpload";
-import axios from "axios";
 import Button from "../form-elements/button";
+import axios from "axios";
 
 const NewPostForm = (props) => {
   const { register, handleSubmit, reset } = useForm("");

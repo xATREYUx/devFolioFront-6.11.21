@@ -6,10 +6,14 @@ import Button from "../form-elements/button";
 import axios from "axios";
 import domain from "../../util/domain";
 
+import Captcha from "../form-elements/captcha";
+
 const ContactUs = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+
+  const [captcha, setCaptcha] = useState();
 
   const { register, handleSubmit, reset } = useForm("");
   // const { sendRequest } = useHttpClient();
@@ -18,31 +22,36 @@ const ContactUs = () => {
 
   const resetForm = () => setResetComponent(!resetComponent);
 
-  const submitPost = async (e) => {
+  const submitContact = async (e) => {
     e.preventDefault();
 
     console.log("send data", e);
 
     try {
-      const postBody = {
+      const newContactBody = {
         name,
         email,
         message,
       };
-
-      axios.post(`${domain}/contacts`, postBody);
-
-      resetForm();
-      reset();
+      console.log(captcha.token);
+      let headers = {
+        headers: {
+          Authorization: "Bearer " + captcha.token,
+        },
+      };
+      axios.post(`${domain}/contacts`, newContactBody, headers);
+      setName("");
+      setEmail("");
+      setMessage("");
     } catch (err) {
-      console.log("submitPost error", err);
+      console.log("submitContact error", err);
     }
   };
 
   return (
-    <FormContainer>
-      <form id="new-post-form" onSubmit={submitPost}>
-        <h1>Contact Me</h1>
+    <FormContainer id="form-container">
+      <form className="new-contact-form" onSubmit={submitContact}>
+        <h2>Contact Me</h2>
         <br />
         <label>Name</label>
         <br />
@@ -76,7 +85,8 @@ const ContactUs = () => {
           onChange={(e) => setMessage(e.target.value)}
           value={message}
         />
-
+        <br />
+        <Captcha setCaptcha={setCaptcha} />
         {appendErrors.password && <p>{appendErrors.password.message}</p>}
         <br />
         <Button type="submit">Send</Button>

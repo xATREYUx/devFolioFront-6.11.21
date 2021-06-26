@@ -9,7 +9,12 @@ import { PostContextProvider } from "./context/PostContext";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
+ 
 firebase.initializeApp(firebaseConfig);
+
+if (process.env.NODE_ENV == "development") {
+  firebase.auth().useEmulator("http://localhost:9099/")
+}
 
 const App = () => {
   return (

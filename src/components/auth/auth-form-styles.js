@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
-export const FormContainer = styled.div`
+export const AuthFormContainer = styled.div`
   display: flex;
-  position: relative;
-  justify-content: flex-end;
+  justify-content: center;
+
   margin-bottom: 30px;
 
-  .new-contact-form {
+  .auth-form {
     text-align: center;
     padding: 10px;
     height: 100%;
+
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);

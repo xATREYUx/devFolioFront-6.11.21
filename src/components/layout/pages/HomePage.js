@@ -39,7 +39,7 @@ const HomePage = () => {
         bubblesRef.current.style.transform = `translateY(
       -${scrolledValue + "px"} 
       )`;
-        console.log("scrolling...", scrolledValue);
+        // console.log("scrolling...", scrolledValue);
       }
     };
     window.addEventListener("scroll", parallax);
@@ -55,7 +55,7 @@ const HomePage = () => {
         <Column id="section-column-left">
           <Title>React Engineering</Title>
           <AboutThisSite />
-          <PostList posts={posts} dataLimit={3} pageLimit={4} title="" />
+          <PostList posts={posts} dataLimit={4} pageLimit={4} title="" />
         </Column>
         <Column id="section-column-right">
           {/* <ProfileSection /> */}
@@ -78,7 +78,7 @@ const HomePage = () => {
               levels to this game.
             </Paragraph>
           </AboutMeContainer>
-          <ContactUs />
+          <ContactUs className="contactUs" />
         </Column>
       </SectionContainer>
       {/* <HomeMidSectionOne posts={loadedPosts} /> */}

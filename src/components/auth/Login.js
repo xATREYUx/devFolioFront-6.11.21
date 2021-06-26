@@ -3,29 +3,27 @@ import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
 import AuthContext from "../../context/AuthContext";
 import domain from "../../util/domain";
-import Button from "../form-elements/button";
+import { createUser, loginUser } from "./authActions";
 import { AuthFormContainer } from "./auth-form-styles";
-import { createUser } from "./authActions";
+import Button from "../form-elements/button";
 
-const Register = () => {
+const Login = () => {
   const { getLoggedIn, loggedIn } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordVerify, setPasswordVerify] = useState("");
 
   const history = useHistory();
 
-  const register = async (e) => {
+  const login = async (e) => {
     e.preventDefault();
     console.log(getLoggedIn);
     try {
-      const registerData = {
+      const loginData = {
         email,
         password,
-        passwordVerify,
       };
-      await createUser(registerData);
+      await loginUser(loginData);
     } catch (err) {
       console.log(err);
     }
@@ -34,9 +32,10 @@ const Register = () => {
   };
 
   return (
-    <AuthFormContainer id="auth-form-container">
-      <form onSubmit={register} className="auth-form">
-        <h2>Register</h2>
+    <AuthFormContainer>
+      <form onSubmit={login} className="auth-form">
+        <h2>Login</h2>
+
         <input
           type="email"
           placeholder="Email"
@@ -49,16 +48,11 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
-        <input
-          type="password"
-          placeholder="Verify your password"
-          onChange={(e) => setPasswordVerify(e.target.value)}
-          value={passwordVerify}
-        />
-        <Button type="submit">Register</Button>
+
+        <Button type="submit">Login</Button>
       </form>
     </AuthFormContainer>
   );
 };
 
-export default Register;
+export default Login;

@@ -12,10 +12,8 @@ const PostListCard = ({ post }) => {
       }}
     >
       <Column>
-        {/* <div> {post.postURLs["postImageOne"]} </div> */}
-
         <img
-          style={{ height: "100px", width: "100px" }}
+          style={{ height: "100%", width: "100%" }}
           src={post.postURLs[0].cardImage}
         />
       </Column>

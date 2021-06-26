@@ -4,23 +4,19 @@ export const CardContainer = styled.div`
   display: flex;
   max-width: 340px;
   height: 150px;
-  text-align: left;
   background-color: white;
-  padding: 10px;
   border-radius: 10px;
   margin: 25px auto 25px auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  overflow: hidden;
 `;
 
 export const FormContainer = styled.div`
-  display: flex;
   max-width: 320px;
-  text-align: left;
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   margin: 25px auto 25px auto;
-
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 `;
 
