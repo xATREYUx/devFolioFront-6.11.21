@@ -8,6 +8,9 @@ import { PostContextProvider } from "./context/PostContext";
 
 import axios from "axios";
 
+require('dotenv').config()
+
+
 axios.defaults.withCredentials = true;
  
 firebase.initializeApp(firebaseConfig);
