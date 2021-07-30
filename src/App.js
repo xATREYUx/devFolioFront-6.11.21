@@ -8,15 +8,14 @@ import { PostContextProvider } from "./context/PostContext";
 
 import axios from "axios";
 
-require('dotenv').config()
-
+require("dotenv").config();
 
 axios.defaults.withCredentials = true;
- 
+
 firebase.initializeApp(firebaseConfig);
 
 if (process.env.NODE_ENV == "development") {
-  firebase.auth().useEmulator("http://localhost:9099/")
+  firebase.auth().useEmulator("http://localhost:9099/");
 }
 
 const App = () => {

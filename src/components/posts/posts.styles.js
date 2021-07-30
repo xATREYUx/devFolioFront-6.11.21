@@ -9,6 +9,9 @@ export const CardContainer = styled.div`
   margin: 25px auto 25px auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   overflow: hidden;
+  #postImageOne {
+    height: 100%;
+  }
 `;
 
 export const FormContainer = styled.div`

@@ -17,9 +17,14 @@ const PostContextProvider = (props) => {
     }
 
     try {
-      console.log("createPost Action Initiated", formData);
+      console.log("createPost Action Initiated");
       //  formData.imageOne = urllocation
-      const newPostRes = await axios.post(`${domain}/posts`, formData);
+      const config = {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      };
+      const newPostRes = await axios.post(`${domain}/posts`, formData, config);
       console.log("newPostRes log", newPostRes.data);
       const data = newPostRes.data;
       setUsersPosts((prevState) => [...prevState, data]);

@@ -6,7 +6,6 @@ const Captcha = ({ setCaptcha }) => {
   const handleToken = (token) => {
     setCaptcha((captcha) => {
       console.log("captcha token: ", token);
-
       return { ...captcha, token };
     });
   };

@@ -33,7 +33,7 @@ const ContactUs = () => {
         email,
         message,
       };
-      console.log(captcha.token);
+      console.log("new contact form token: ", captcha.token);
       let headers = {
         headers: {
           Authorization: "Bearer " + captcha.token,

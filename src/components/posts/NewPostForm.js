@@ -51,8 +51,12 @@ const NewPostForm = (props) => {
 
   return (
     <FormContainer>
-      <form id="new-post-form" onSubmit={handleSubmit(submitPost)}>
-        <h1>New Post</h1>
+      <form
+        id="new-post-form"
+        onSubmit={handleSubmit(submitPost)}
+        enctype="multipart/form-data"
+      >
+        <h1>Create Post</h1>
         <br />
         <label>Title</label>
         <br />

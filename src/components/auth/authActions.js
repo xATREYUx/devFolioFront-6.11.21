@@ -27,14 +27,20 @@ export const createUser = async (props) => {
       .catch((err) => {
         console.log("createUser Error", err);
       });
-    return axios.post(`${domain}/auth`, userObject);
+    return axios
+      .post(`${domain}/auth`, userObject, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log("createUser res: ", res);
+      });
   } catch (err) {
     console.log("New User Creation Error: ", err);
   }
 };
 
 export const loginUser = async (props) => {
-  console.log("New User Creation Initiated", props);
+  console.log("Login Initiated", props);
 
   const { email, password } = props;
   let userObject = { tokenId: null };
