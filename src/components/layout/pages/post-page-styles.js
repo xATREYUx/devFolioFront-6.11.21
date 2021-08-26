@@ -25,8 +25,8 @@ export const PostPageContainer = styled.div`
     margin: 0 50px 0 50px;
   }
   .postImage {
-    height: 100%;
-    width: 100%;
+    height: 25vw;
+    width: 25vw;
   }
   .post-content {
     border: 2px solid black;

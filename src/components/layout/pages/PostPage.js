@@ -11,7 +11,7 @@ const PostPage = (props) => {
   return (
     <PostPageContainer>
       <div className="post-image-section-container">
-        <h1>{postDetails.postURLs["postImageTwo"]}</h1>
+        {/* <h1>{postDetails.postURLs[1]}</h1> */}
 
         <div
           className={`post-image-container ${
@@ -20,7 +20,8 @@ const PostPage = (props) => {
         >
           <img
             className="postImage"
-            src={postDetails.postURLs[1].postImageOne}
+            src={postDetails.postURLs[1]}
+            alt="Youre probably not online"
           />
         </div>
         <div
@@ -28,10 +29,7 @@ const PostPage = (props) => {
             postDetails.postURLs[2] && "undashed"
           }`}
         >
-          <img
-            className="postImage"
-            src={postDetails.postURLs[2].postImageTwo}
-          />
+          <img className="postImage" src={postDetails.postURLs[2]} />
         </div>
       </div>
       <div className="post-section-container">

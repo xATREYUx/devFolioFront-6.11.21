@@ -24,7 +24,7 @@ const Router = () => {
         <NavBar />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <AuthRoute path="/auth" component={AuthPage} auth={loggedIn} />
+          <AuthRoute path="/auth" component={AuthPage} />
           {/* <AuthRoute path="/register" component={Register} auth={loggedIn} /> */}
           <PrivateRoute path="/user" component={UserPage} />
           <Route path="/post/:id" component={PostPage} />

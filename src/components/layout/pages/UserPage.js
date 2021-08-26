@@ -6,13 +6,17 @@ import NewPostForm from "../../posts/NewPostForm";
 import PostList from "../../posts/PostList";
 import PostContext from "../../../context/PostContext";
 import AuthContext from "../../../context/AuthContext";
+import EnterUserAdmin from "../../adminComponents/MakeUserAdmin";
+
+import firebase from "firebase";
 
 const UserPage = () => {
   const { getUsersPosts, usersPosts } = useContext(PostContext);
-  const { loggedIn } = useContext(AuthContext);
+  const { loggedIn, CheckAdmin } = useContext(AuthContext);
 
   useEffect(() => {
     getUsersPosts();
+    console.log("UserPage loggedIn", loggedIn);
   }, []);
 
   console.log("UserPage: ", usersPosts);
@@ -24,6 +28,9 @@ const UserPage = () => {
       </Column>
       <Column>
         <NewPostForm />
+        <div className="admin-container">
+          <CheckAdmin />
+        </div>
       </Column>
     </UserPageContainer>
   );

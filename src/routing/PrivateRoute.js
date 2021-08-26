@@ -13,7 +13,7 @@ export const PrivateRoute = ({ component }) => {
 };
 
 export const AuthRoute = ({ component }) => {
-  const history = useHistory();
+  // const history = useHistory();
   const { loggedIn } = useContext(AuthContext);
   const finalComponent = !loggedIn ? component : UserPage;
 

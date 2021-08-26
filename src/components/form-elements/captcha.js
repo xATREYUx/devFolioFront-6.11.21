@@ -15,9 +15,15 @@ const Captcha = ({ setCaptcha }) => {
       return { ...captcha, token: null };
     });
   };
+  let siteKey;
+  if (process.env.NODE_ENV == "development") {
+    siteKey = process.env.REACT_APP_SITE_KEY_DEVELOPMENT;
+  } else {
+    siteKey = process.env.REACT_APP_SITE_KEY;
+  }
   return (
     <ReCaptchaV2
-      sitekey={process.env.REACT_APP_SITE_KEY}
+      sitekey={siteKey}
       onChange={handleToken}
       onExpire={handleExpire}
     />

@@ -17,7 +17,6 @@ const Login = () => {
 
   const login = async (e) => {
     e.preventDefault();
-    console.log(getLoggedIn);
     try {
       const loginData = {
         email,
@@ -27,7 +26,10 @@ const Login = () => {
     } catch (err) {
       console.log(err);
     }
+
     await getLoggedIn();
+    console.log("getLoggedIn", loggedIn);
+
     history.push("/user");
   };
 

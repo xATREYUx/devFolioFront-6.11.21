@@ -54,7 +54,7 @@ const NewPostForm = (props) => {
       <form
         id="new-post-form"
         onSubmit={handleSubmit(submitPost)}
-        enctype="multipart/form-data"
+        // enctype="multipart/form-data"
       >
         <h1>Create Post</h1>
         <br />
