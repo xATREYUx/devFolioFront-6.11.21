@@ -60,20 +60,21 @@ const AuthContextProvider = (props) => {
         .then((idTokenResult) => {
           if (!!idTokenResult.claims.admin) {
             setAdmin(true);
+            console.log("I'm an Admin!");
           } else {
             console.log("Not an Admin");
             return null;
           }
         })
         .catch((error) => {
-          console.log(error);
+          console.log("idTokenResult.claims.admin", error);
         });
     });
 
     return (
       <div>
         {/* <div>{idTokenResult.claims.admin}</div> */}
-        {admin && <EnterUserAdmin />}
+        {true && <EnterUserAdmin />}
       </div>
     );
   };

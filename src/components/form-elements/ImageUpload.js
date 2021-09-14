@@ -13,15 +13,21 @@ const ImageUpload = (props) => {
 
   useEffect(() => {
     if (!file) {
-      console.log("file not loaded");
-      return;
+      if (props.previewImage) {
+        console.log("Edit Mode");
+        setPreviewUrl(props.previewImage);
+      } else {
+        console.log("file not loaded");
+        return;
+      }
+    } else {
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        setPreviewUrl(fileReader.result);
+      };
+      fileReader.readAsDataURL(file);
     }
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      setPreviewUrl(fileReader.result);
-    };
-    fileReader.readAsDataURL(file);
-  }, [file]);
+  }, [file, props.previewImage]);
 
   const pickedHandler = (event) => {
     console.log("pickedHandler", event.target);

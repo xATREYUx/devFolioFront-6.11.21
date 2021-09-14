@@ -1,92 +1,71 @@
-loginpage;
-UserPage;
-postpage;
+import axios from "axios";
+import React, { useRef, useState, useEffect } from "react";
 
-const NewPostForm = () => {
-  const [title, setTitle] = useState();
-  const [caption, setCaption] = useState();
-  const [content, setContent] = useState();
-  const [cardImage, setCardImage] = useState();
-  //   const [postImageOne, setPostImageOne] = useState();
-  //   const [postImageTwo, setPostImageTwo] = useState();
-  const { posts, getPosts, usersPosts, createPost } = useContext(PostContext);
-  const submitPost = async (e) => {
-    e.preventDefault();
+import Button from "./button";
+import { ImageUploadContainer } from "./form-elements-style";
 
-    try {
-      const postData = {
-        title,
-        caption,
-        content,
-        // cardImage,
-      };
-      createPost(postData);
-    } catch (err) {
-      console.log("createPost Error", err);
+const ImageUpload = (props) => {
+  const [file, setFile] = useState(props.defaultValue || null);
+  const [previewUrl, setPreviewUrl] = useState();
+  const [isValid, setIsValid] = useState(false);
+  const setImage = props.setImage;
+  const filePickerRef = useRef();
+
+  useEffect(() => {
+    if (!file) {
+      console.log("check for file");
+      if (!props.edit) return;
     }
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewUrl(fileReader.result);
+    };
+    fileReader.readAsDataURL(file);
+  }, [file]);
+
+  const pickedHandler = (event) => {
+    console.log("pickedHandler", event.target);
+    let pickedFile;
+    let fileIsValid = isValid;
+    if (event.target.files && event.target.files.length === 1) {
+      pickedFile = event.target.files[0];
+      setFile(pickedFile);
+      setIsValid(true);
+      fileIsValid = true;
+    } else {
+      setIsValid(false);
+      fileIsValid = false;
+    }
+    setImage(pickedFile);
+    // props.onInput(props.id, pickedFile, fileIsValid);
+  };
+
+  const pickImageHandler = () => {
+    filePickerRef.current.click();
   };
 
   return (
-    <div>
-      <div>New Post Form Component</div>
-      <form id="new-post-form" onSubmit={submitPost}>
-        <h1>New Post</h1>
-        <br />
-        <label>Title</label>
-        <br />
-        <input
-          type="text"
-          placeholder="Title"
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
-        <br />
-        <label>Caption</label>
-        <br />
-        <input
-          type="text"
-          placeholder="42 Charachter Limit"
-          onChange={(e) => {
-            setCaption(e.target.value);
-          }}
-          maxLength="42"
-        />
-        <br />
-        <label>Content</label>
-        <br />
-        <textarea
-          type="textarea"
-          placeholder="Content"
-          onChange={(e) => {
-            setContent(e.target.value);
-          }}
-          cols="30"
-          rows="10"
-        />
-        <br />
-        <br />
-        <ImageUpload id="card-image" />
-        {/* <input
-            type="text"
-            placeholder="Image"
-            name="cardImage"
-            ref={register}
-          /> */}
-        {/* <ImageUpload
-            name="cardImage"
-            displayName="Card Image"
-            inputRef={register}
-            selectedImage={() => {}}
-          /> */}
-
-        {/* <input ref={register} name="cardImage" type="file" /> */}
-        {/* {appendErrors.password && <p>{appendErrors.password.message}</p>} */}
-        <br />
-        <button type="submit">Post</button>
-      </form>
-    </div>
+    <ImageUploadContainer>
+      <input
+        id={props.id}
+        ref={filePickerRef}
+        style={{ display: "none" }}
+        type="file"
+        accept=".jpg,.png,.jpeg"
+        onChange={pickedHandler}
+      />
+      <div className={`image-upload ${props.center && "center"}`}>
+        <div className="image-upload__preview">
+          {previewUrl && <img src={previewUrl} alt="Preview" />}
+          {!previewUrl && <p>Please pick an image.</p>}
+        </div>
+        <Button type="button" onClick={pickImageHandler}>
+          PICK IMAGE
+        </Button>
+      </div>
+      {!isValid && <p>{props.errorText}</p>}
+    </ImageUploadContainer>
   );
 };
 
-export default NewPostForm;
+export default ImageUpload;

@@ -51,18 +51,19 @@ export const loginUser = async (props) => {
       .signInWithEmailAndPassword(email, password)
       .then(({ user }) => {
         console.log("user: ", user);
-        //The promise sends me a user object, now I get the token, and refresh it by sending true (obviously another promise)
         user
           .getIdToken()
           .then((tokenId) => {
             userObject = { tokenId: tokenId };
           })
           .catch((err) => {
-            console.log(err);
+            console.log("login error: ", err);
           });
       })
       .catch((err) => {
-        console.log(err);
+        console.log("login error 2: ", err);
+        document.getElementById("error").innerHTML = err.message;
+        return;
       });
     return axios.post(`${domain}/auth`, userObject);
   } catch (err) {

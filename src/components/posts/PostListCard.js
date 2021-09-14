@@ -5,7 +5,7 @@ import { Column } from "../../shared/shared.styles";
 import AuthContext from "../../context/AuthContext";
 import PostButtons from "./PostButtons";
 
-const PostListCard = ({ post }) => {
+const PostListCard = ({ post, setEditPostData }) => {
   console.log("PostListCard Initiated: ", post);
   const history = useHistory();
   const { loggedIn } = useContext(AuthContext);
@@ -37,7 +37,9 @@ const PostListCard = ({ post }) => {
           </h3>
           <div>{post.caption}</div>
           <PostButtonsContainer className="postButtons">
-            {post.creator === loggedIn.user.uid && <PostButtons post={post} />}
+            {post.creator === loggedIn.user.uid && (
+              <PostButtons post={post} setEditPostData={setEditPostData} />
+            )}
           </PostButtonsContainer>
         </Column>
       </CardContainer>

@@ -22,11 +22,13 @@ const Captcha = ({ setCaptcha }) => {
     siteKey = process.env.REACT_APP_SITE_KEY;
   }
   return (
-    <ReCaptchaV2
-      sitekey={siteKey}
-      onChange={handleToken}
-      onExpire={handleExpire}
-    />
+    <div style={{ transform: "scale(.9)" }}>
+      <ReCaptchaV2
+        sitekey={siteKey}
+        onChange={handleToken}
+        onExpire={handleExpire}
+      />
+    </div>
   );
 };
 

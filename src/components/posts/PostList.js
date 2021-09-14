@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import PostListCard from "./PostListCard";
 import { Pagination } from "./posts.styles";
 
-const PostList = ({ posts, dataLimit, pageLimit, title }) => {
+const PostList = ({ posts, dataLimit, pageLimit, title, setEditPostData }) => {
   console.log("post length", posts.length);
   const [pages, setPages] = useState();
   console.log("pages: ", pages);
@@ -48,7 +48,11 @@ const PostList = ({ posts, dataLimit, pageLimit, title }) => {
         {/* show the posts, 10 posts at a time */}
         <div className="dataContainer">
           {getPaginatedData().map((post) => (
-            <PostListCard key={post.id} post={post} />
+            <PostListCard
+              key={post.id}
+              post={post}
+              setEditPostData={setEditPostData}
+            />
           ))}
         </div>
 

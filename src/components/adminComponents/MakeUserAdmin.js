@@ -8,10 +8,8 @@ import domain from "../../util/domain";
 
 const EnterUserAdmin = () => {
   const [email, setEmail] = useState("");
-
-  const { register, handleSubmit, reset } = useForm("");
-
   const [resetComponent, setResetComponent] = useState(false);
+  const { register, handleSubmit, reset } = useForm("");
 
   const resetForm = () => setResetComponent(!resetComponent);
 
@@ -25,7 +23,7 @@ const EnterUserAdmin = () => {
         email,
       };
 
-      axios.post(`${domain}/admin`, newAdminBody);
+      await axios.post(`${domain}/admin`, newAdminBody);
       setEmail("");
     } catch (err) {
       console.log("submitAdmin error", err);

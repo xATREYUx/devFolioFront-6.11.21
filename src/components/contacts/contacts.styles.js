@@ -18,4 +18,7 @@ export const FormContainer = styled.div`
   h2 {
     margin-bottom: 0px;
   }
+  /* .captcha-container {
+    width: 50%;
+  } */
 `;

@@ -34,6 +34,33 @@ const PostContextProvider = (props) => {
     }
   };
 
+  const updatePost = async ({ formData, editPostId }) => {
+    for (var value of formData.values()) {
+      console.log("editPost data", value);
+    }
+
+    try {
+      console.log("editPost Action Initiated");
+      //  formData.imageOne = urllocation
+      const config = {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      };
+      const editPostRes = await axios.put(
+        `${domain}/posts/${editPostId}`,
+        formData,
+        config
+      );
+      console.log("editPost log", editPostRes.data);
+      const data = editPostRes.data;
+      setUsersPosts((prevState) => [...prevState, data]);
+      console.log("---Post editPost---");
+    } catch (err) {
+      console.log("editPost error", err);
+    }
+  };
+
   const getPosts = async () => {
     try {
       console.log("getPosts Initiated");
@@ -72,6 +99,7 @@ const PostContextProvider = (props) => {
     <PostContext.Provider
       value={{
         getPosts,
+        updatePost,
         posts,
         setPosts,
         usersPosts,

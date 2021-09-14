@@ -24,7 +24,7 @@ const Login = () => {
       };
       await loginUser(loginData);
     } catch (err) {
-      console.log(err);
+      console.log("Login Form Error: ", err);
     }
 
     await getLoggedIn();
@@ -52,6 +52,7 @@ const Login = () => {
         />
 
         <Button type="submit">Login</Button>
+        <div id="error"></div>
       </form>
     </AuthFormContainer>
   );

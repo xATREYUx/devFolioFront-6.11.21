@@ -86,7 +86,9 @@ const ContactUs = () => {
           value={message}
         />
         <br />
-        <Captcha setCaptcha={setCaptcha} />
+        <div className="captcha-container">
+          <Captcha setCaptcha={setCaptcha} />
+        </div>
         {appendErrors.password && <p>{appendErrors.password.message}</p>}
         <br />
         <Button type="submit">Send</Button>

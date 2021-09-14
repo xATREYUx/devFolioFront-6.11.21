@@ -14,6 +14,8 @@ const UserPage = () => {
   const { getUsersPosts, usersPosts } = useContext(PostContext);
   const { loggedIn, CheckAdmin } = useContext(AuthContext);
 
+  const [editPostData, setEditPostData] = useState("");
+
   useEffect(() => {
     getUsersPosts();
     console.log("UserPage loggedIn", loggedIn);
@@ -24,10 +26,19 @@ const UserPage = () => {
     <UserPageContainer>
       <Column>
         <div>{loggedIn.user.email}</div>
-        <PostList posts={usersPosts} dataLimit={4} pageLimit={4} title="" />
+        <PostList
+          posts={usersPosts}
+          dataLimit={4}
+          pageLimit={4}
+          title=""
+          setEditPostData={setEditPostData}
+        />
       </Column>
       <Column>
-        <NewPostForm />
+        <NewPostForm
+          editPostData={editPostData}
+          setEditPostData={setEditPostData}
+        />
         <div className="admin-container">
           <CheckAdmin />
         </div>
