@@ -37,8 +37,7 @@ export const Title = styled.div`
   margin: 10px 0 0px 0;
   font-size: 3rem;
   color: white;
-  font-family: "Allura", cursive;
-
+  font-family: "Patrick Hand", cursive;
   &.inverse {
     color: black;
   }

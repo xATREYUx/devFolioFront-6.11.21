@@ -26,6 +26,8 @@ export const FooterContainer = styled.div`
 `;
 
 export const SubTitle = styled.div`
+  font-family: "Patrick Hand", cursive;
+
   font-size: 1.5rem;
   /* max-width:  */
   margin: 50px;
