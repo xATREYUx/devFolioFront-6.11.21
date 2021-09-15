@@ -57,7 +57,7 @@ const PostContextProvider = (props) => {
       setUsersPosts((prevState) => [...prevState, data]);
       console.log("---Post editPost---");
     } catch (err) {
-      console.log("editPost error", err);
+      console.log("update error", err);
     }
   };
 

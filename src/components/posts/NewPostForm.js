@@ -80,7 +80,7 @@ const NewPostForm = (props) => {
       for (var value of formData.values()) {
         console.log("editPost data value", value);
       }
-      await updatePost(formData, editPostId);
+      await updatePost({ formData, editPostId });
 
       resetForm();
       reset();
