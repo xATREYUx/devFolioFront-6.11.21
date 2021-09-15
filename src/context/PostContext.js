@@ -54,7 +54,8 @@ const PostContextProvider = (props) => {
       );
       console.log("editPost log", editPostRes.data);
       const data = editPostRes.data;
-      setUsersPosts((prevState) => [...prevState, data]);
+      const newState = usersPosts.filter((item) => item.id === editPostId);
+      setUsersPosts((prevState) => [...newState, data]);
       console.log("---Post editPost---");
     } catch (err) {
       console.log("update error", err);
